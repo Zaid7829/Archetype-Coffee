@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme {
+  --color-espresso: #1a0f0a;
+  --color-espresso-light: #2d1b15;
+  --color-cream: #f5f5dc;
+  --color-copper: #b87333;
+  --color-copper-gold: #daa520;
+  --color-matcha: #6b8e23;
+  --color-raspberry: #c21e56;
+  --color-blueberry: #4b0082;
+
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-espresso);
+    color: var(--color-cream);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: rgba(45, 27, 21, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(184, 115, 51, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+
+  .text-shadow-premium {
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  }
+
+  .glow-copper {
+    box-shadow: 0 0 30px rgba(184, 115, 51, 0.2);
+  }
+
+  .noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  .premium-blur {
+    backdrop-filter: blur(20px) saturate(180%);
+  }
+}
+
+:root {
+  --espresso: #1a0f0a;
+  --cream: #f5f5dc;
+  --copper: #b87333;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--espresso);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(184, 115, 51, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--copper);
+}
+
+.perspective-text {
+  perspective: 1000px;
+}
+
+@keyframes loading-bar {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-loading-bar {
+  animation: loading-bar 2s ease-in-out infinite;
+}
