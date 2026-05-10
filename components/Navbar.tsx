@@ -1,14 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import ArchetypeBrand from './ArchetypeBrand';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { scrollY } = useScroll();
 
   // Scroll logic for glass effect
   useEffect(() => {
@@ -28,16 +27,16 @@ const Navbar = () => {
 
   return (
     <motion.nav 
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-[100] h-20 md:h-16 transition-all duration-500 ease-in-out ${
         isScrolled 
           ? 'bg-espresso/70 backdrop-blur-2xl border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)]' 
           : 'bg-transparent border-b border-transparent'
       }`}
     >
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 h-full flex items-center justify-between relative">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-12 h-20 md:h-16 flex items-center justify-between relative">
         
         {/* Left: Branding */}
         <div className="flex-1 flex justify-start">
@@ -48,16 +47,18 @@ const Navbar = () => {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             whileHover={{ scale: 1.02 }}
-            className="cursor-pointer focus-visible:outline-none z-50"
+            className="cursor-pointer focus-visible:outline-none z-50 w-[180px] md:w-[240px] h-20 md:h-16 flex items-center"
             aria-label="Archetype Coffee Home"
           >
-            <ArchetypeBrand variant="horizontal" className="scale-[0.55] md:scale-[0.65] origin-left" />
+            <div className="scale-[0.55] md:scale-[0.65] origin-left w-full">
+              <ArchetypeBrand variant="horizontal" />
+            </div>
           </motion.a>
         </div>
 
         {/* Center: Navigation Links (Apple-style alignment) */}
         <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-10">
-          {navLinks.map((link, i) => (
+          {navLinks.map((link) => (
             <motion.a
               key={link.name}
               href={link.href}
@@ -118,13 +119,13 @@ const Navbar = () => {
           >
             <div className="container mx-auto px-10 h-full flex flex-col">
               <nav className="flex flex-col gap-6">
-                {navLinks.map((link, i) => (
+                {navLinks.map((link) => (
                   <motion.a
                     key={link.name}
                     href={link.href}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.1 + 0.2, duration: 0.5 }}
+                    transition={{ delay: 0.2, duration: 0.5 }}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="text-4xl font-serif text-cream hover:text-copper transition-colors border-b border-white/5 pb-4 flex items-center justify-between group"
                   >

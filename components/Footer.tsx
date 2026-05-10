@@ -19,6 +19,7 @@ const Footer = () => {
           src="/images/archetype/welcome-sketch-illustration.jpg" 
           alt="" 
           fill 
+          sizes="384px"
           className="object-contain"
         />
       </div>

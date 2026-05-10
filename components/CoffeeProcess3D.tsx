@@ -48,12 +48,15 @@ const StageOverlay = ({ stage }: { stage: number }) => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="absolute left-0 top-0 bottom-0 w-1/3 hidden lg:block"
         >
-          <Image 
-            src={stageImages[safeStage]} 
-            alt={titles[safeStage]} 
-            fill 
-            className="object-cover grayscale"
-          />
+          <div className="relative w-full h-full">
+            <Image 
+              src={stageImages[safeStage]} 
+              alt={titles[safeStage]} 
+              fill 
+              sizes="33vw"
+              className="object-cover grayscale"
+            />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-r from-espresso via-transparent to-espresso" />
         </motion.div>
       </AnimatePresence>
@@ -87,12 +90,15 @@ const StageOverlay = ({ stage }: { stage: number }) => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="absolute right-0 top-0 bottom-0 w-1/4 hidden lg:block"
         >
-          <Image 
-            src={stageImages[(safeStage + 1) % stageImages.length]} 
-            alt="Next Stage Preview" 
-            fill 
-            className="object-cover grayscale"
-          />
+          <div className="relative w-full h-full">
+            <Image 
+              src={stageImages[(safeStage + 1) % stageImages.length]} 
+              alt="Next Stage Preview" 
+              fill 
+              sizes="25vw"
+              className="object-cover grayscale"
+            />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-l from-espresso via-transparent to-espresso" />
         </motion.div>
       </AnimatePresence>

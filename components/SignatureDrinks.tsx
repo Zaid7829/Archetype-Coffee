@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Sparkles, Zap, Leaf, Droplet } from 'lucide-react';
+// No icons used in this component yet
 
 const signatureDrinks = [
   {

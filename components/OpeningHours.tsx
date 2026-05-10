@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Clock, MapPin, Navigation, Copy, Check, Info } from 'lucide-react';
+import { MapPin, Navigation, Copy, Check, Info } from 'lucide-react';
 
 const OpeningHours = () => {
   const [copied, setCopied] = useState(false);

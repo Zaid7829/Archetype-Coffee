@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Navigation, Copy, Check, ExternalLink, Clock } from 'lucide-react';
+import { MapPin, Navigation, Copy, Check, ExternalLink } from 'lucide-react';
 
 const LocationMap = () => {
-  const [mapMode, setMapMode] = useState<'colored' | 'satellite'>('colored');
+  const [mapMode, setMapMode] = useState<'colored' | 'satellite'>('satellite');
   const [isLoaded, setIsLoaded] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -85,14 +85,41 @@ const LocationMap = () => {
             </div>
 
             {/* Quick Context Cards */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="p-8 bg-white/5 border border-white/5 rounded-2xl group hover:bg-white/10 transition-all duration-500">
-                <span className="block text-cream/60 text-sm mb-2 font-serif italic">Fitzrovia</span>
-                <span className="text-[9px] text-cream/20 uppercase tracking-[0.3em] font-bold">The District</span>
+            <div className="grid grid-cols-1 gap-4">
+              <div 
+                onClick={copyToClipboard}
+                className="p-8 bg-white/5 border border-white/5 rounded-2xl group hover:bg-white/10 transition-all duration-500 cursor-pointer relative overflow-hidden"
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <div className="w-10 h-10 border border-white/10 rounded-xl flex items-center justify-center text-copper">
+                    {copied ? <Check size={18} /> : <Copy size={18} />}
+                  </div>
+                  <span className="text-[9px] text-cream/20 uppercase tracking-[0.3em] font-bold">Address</span>
+                </div>
+                <span className="block text-cream/80 text-sm font-serif italic mb-1">{address}</span>
+                <p className="text-[9px] text-copper/40 uppercase tracking-widest">{copied ? 'Copied to clipboard' : 'Click to copy'}</p>
               </div>
-              <div className="p-8 bg-white/5 border border-white/5 rounded-2xl group hover:bg-white/10 transition-all duration-500">
-                <span className="block text-cream/60 text-sm mb-2 font-serif italic">W1W 7DY</span>
-                <span className="text-[9px] text-cream/20 uppercase tracking-[0.3em] font-bold">Postcode</span>
+
+              <div className="grid grid-cols-2 gap-4">
+                <a 
+                  href={googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-8 bg-white/5 border border-white/5 rounded-2xl group hover:bg-white/10 transition-all duration-500 flex flex-col justify-center"
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <Navigation size={14} className="text-copper/60" />
+                    <span className="block text-cream/60 text-sm font-serif italic">Directions</span>
+                  </div>
+                  <span className="text-[9px] text-cream/20 uppercase tracking-[0.3em] font-bold">Google Maps</span>
+                </a>
+                <div className="p-8 bg-white/5 border border-white/5 rounded-2xl group hover:bg-white/10 transition-all duration-500 flex flex-col justify-center">
+                  <div className="flex items-center gap-3 mb-2">
+                    <MapPin size={14} className="text-copper/60" />
+                    <span className="block text-cream/60 text-sm font-serif italic">Fitzrovia</span>
+                  </div>
+                  <span className="text-[9px] text-cream/20 uppercase tracking-[0.3em] font-bold">Location</span>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -158,7 +185,7 @@ const LocationMap = () => {
               referrerPolicy="no-referrer-when-downgrade"
               title={`Archetype Coffee Studio ${mapMode} map`}
               onLoad={() => setIsLoaded(true)}
-              className={`transition-all duration-1000 w-full h-full grayscale brightness-[0.7] contrast-[1.2] group-hover:grayscale-[0.5] group-hover:brightness-[0.8] ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+              className={`transition-all duration-1000 w-full h-full brightness-[0.85] contrast-[1.1] ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
             />
 
             {/* Floating UI Detail */}
