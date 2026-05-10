@@ -16,11 +16,7 @@ import OpeningHours from '@/components/OpeningHours';
 import LocationMap from '@/components/LocationMap';
 import Footer from '@/components/Footer';
 
-// Dynamic imports for 3D components to avoid hydration issues
-const Hero3D = dynamic(() => import('@/components/Hero3D'), { 
-  ssr: false,
-  loading: () => <div className="h-screen bg-espresso flex items-center justify-center text-copper uppercase tracking-widest text-[10px]">Loading Archetype...</div>
-});
+import VideoHero from '@/components/VideoHero';
 
 const CoffeeProcess3D = dynamic(() => import('@/components/CoffeeProcess3D'), { 
   ssr: false,
@@ -200,7 +196,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <Navbar />
-      <Hero3D />
+      <VideoHero />
       <AboutSection />
       <SignatureDrinks />
       <GallerySection />

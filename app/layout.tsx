@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Playfair_Display, Great_Vibes } from "next/font/google";
 import "./globals.css";
 import MobileCTA from "@/components/MobileCTA";
 
@@ -11,6 +11,12 @@ const inter = Inter({
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-serif",
+});
+
+const script = Great_Vibes({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-script",
 });
 
 export const viewport: Viewport = {
@@ -88,7 +94,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${playfair.variable} ${script.variable}`} suppressHydrationWarning>
       <body className="antialiased relative">
         <script
           type="application/ld+json"
