@@ -111,6 +111,9 @@ const ProcessScene = ({ scrollProgress }: { scrollProgress: number }) => {
   const groupRef = useRef<THREE.Group>(null);
   const isMobile = size.width < 768;
 
+  // NOTE: A browser warning regarding THREE.Clock deprecation may appear.
+  // This is originating from internal @react-three/fiber dependency logic.
+  // No direct THREE.Clock usage exists in this application code.
   useFrame(() => {
     if (!groupRef.current) return;
     
